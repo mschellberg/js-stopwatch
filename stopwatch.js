@@ -20,7 +20,7 @@ How do I think I can achieve this project?
     we would use the click event so when you click on a btn on the html page it will execute a function from the js file
 -
 */
-
+/*
 var seconds = 00;
 var min = 00;
 var appendSeconds = document.getElementById('seconds')
@@ -32,7 +32,7 @@ const resetBtn = document.getElementById('reset');
 
 function startTimer() {
     seconds ++
-
+    console.log(startTimer);
     if(seconds <= 9) {
         appendSeconds.innerHTML("0" + seconds)
         console.log(seconds)
@@ -50,4 +50,35 @@ function startTimer() {
     
 }
 
+
+*/ 
+var myInterval = setInterval(startTimer, 1000);
+var appendSeconds = document.getElementById('seconds')
+var appendMinutes = document.getElementById('minutes')
+let seconds = 0;
+let minutes = 0;
+
+function startTimer() {
+    appendSeconds.innerHTML = seconds;
+    seconds++
+
+    if(seconds <= 9) {
+        appendSeconds.innerText = "0" + seconds;
+    }
+    /*
+    if(seconds > 59) {
+        seconds = 0; minutes = minutes;
+        minutes++
+    }*/
+   console.log(appendSeconds)
+}
+    
+    
+function stopTimer() {
+    clearInterval(myInterval);
+}
+
+function resetTimer() {
+
+}
 
