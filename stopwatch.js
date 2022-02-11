@@ -6,79 +6,64 @@ When I click stop, the timer stops
 When I click reset, the timer will reset back to 0 
 */
 
-/*
-What are the steps to creating a timer in JS?
-1. Start by being able to increment the timer 
-2. 
-*/
 
-/*
-How do I think I can achieve this project?
--conditionals/loops such as if/else statements, for/while? 
--function
--getElementById().click ---click event?
-    we would use the click event so when you click on a btn on the html page it will execute a function from the js file
--
-*/
-/*
-var seconds = 00;
-var min = 00;
-var appendSeconds = document.getElementById('seconds')
-var appendMinutes = document.getElementById('minutes')
+let myInterval;
+let appendSeconds = document.getElementById('seconds')
+let appendMinutes = document.getElementById('minutes')
+let stopBtn = document.getElementById('stop');
+let startTime = 0;
 
-const startBtn = document.getElementById('start');
-const stopBtn = document.getElementById('stop');
-const resetBtn = document.getElementById('reset');
-
+// start by setting the timer to 0 and applying the date.now time method
 function startTimer() {
-    seconds ++
-    console.log(startTimer);
+    if(startTime === 0) {
+        startTime = Date.now();
+    }
+    myInterval = setInterval(calculateTime, 1000);
+}
+
+// subtract time you started at with the current time to get your seconds and minutes
+function calculateTime() {
+    const currentTime = Date.now();
+    const timeElapsed = (currentTime - startTime) / 1000;
+    let seconds = Math.floor(timeElapsed % 60);
+    const minutes = Math.floor(timeElapsed / 60);
+    appendSeconds.innerHTML = seconds;
+    appendMinutes.innerHTML = minutes;
+
+// if statement is used to place a 0 in front of single digits and to convert seconds into minutes
     if(seconds <= 9) {
-        appendSeconds.innerHTML("0" + seconds)
-        console.log(seconds)
+        appendSeconds.innerHTML = "0" + seconds;
+        console.log(seconds);
     }
     if(seconds > 9) {
-        appendSeconds.innerHTML(seconds);
+        seconds = seconds;
+        console.log(seconds);
     }
-    if(seconds > 59) {
-        seconds = 0; min = min++;
-        appendMinutes.innerHTML("0" + min);
-    }
-    if(min > 9){
-        appendMinutes.innerHTML(min);
-    }
-    
-}
-
-
-*/ 
-var myInterval = setInterval(startTimer, 1000);
-var appendSeconds = document.getElementById('seconds')
-var appendMinutes = document.getElementById('minutes')
-let seconds = 0;
-let minutes = 0;
-
-function startTimer() {
-    appendSeconds.innerHTML = seconds;
-    seconds++
-
-    if(seconds <= 9) {
-        appendSeconds.innerText = "0" + seconds;
-    }
-    /*
-    if(seconds > 59) {
-        seconds = 0; minutes = minutes;
+    if(seconds > 59){
+        seconds = 0; appendMinutes.innerHTML = minutes;
+        console.log(minutes)
         minutes++
-    }*/
-   console.log(appendSeconds)
+    }
+    if(minutes <= 9) {
+        appendMinutes.innerHTML = "0" + minutes;
+    }
 }
-    
-    
+       
 function stopTimer() {
     clearInterval(myInterval);
 }
 
 function resetTimer() {
+    clearInterval(myInterval);
+    seconds = "00";
+    minutes = "00";
+    
+    appendSeconds.innerHTML = seconds;
 
 }
 
+
+/* Issues I need to fix
+- how to get real time to stop when you hit stop button vs having it paused on html but still       counting in js
+- when you press reset you can see it goes back to "00". Need to figure out how to go back to zero in js because once you press start it continues when it left off at(well supposed to leave off at).
+*/

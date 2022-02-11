@@ -5,13 +5,13 @@ body {
  
 }
 h1 {
-    font-size: 80px;
+    font-size: 70px;
     color:#8585d3;
     margin: 0;
-    padding: 40px 0;
+    padding: 40px 20px;
 }
 img.clock {
-    width: 250px;
+    width: 200px;
 }
 button {
     font-size: 15px;
