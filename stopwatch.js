@@ -33,15 +33,12 @@ function calculateTime() {
 // if statement is used to place a 0 in front of single digits and to convert seconds into minutes
     if(seconds <= 9) {
         appendSeconds.innerHTML = "0" + seconds;
-        console.log(seconds);
     }
     if(seconds > 9) {
         seconds = seconds;
-        console.log(seconds);
     }
     if(seconds > 59){
         seconds = 0; appendMinutes.innerHTML = minutes;
-        console.log(minutes)
         minutes++
     }
     if(minutes <= 9) {
@@ -51,17 +48,18 @@ function calculateTime() {
        
 function stopTimer() {
     clearInterval(myInterval);
+    
+    
 }
 
 function resetTimer() {
     clearInterval(myInterval);
     seconds = "00";
     minutes = "00";
-    
     appendSeconds.innerHTML = seconds;
-
+    appendMinutes.innerHTML = minutes;
+    startTime = 0
 }
-
 
 /* Issues I need to fix
 - how to get real time to stop when you hit stop button vs having it paused on html but still       counting in js
